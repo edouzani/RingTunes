@@ -5,13 +5,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 
 public class PassThroughActivity extends AppCompatActivity {
     private final int requestCode = 42;
@@ -31,7 +25,9 @@ public class PassThroughActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 returnIntent = new Intent();
                 Uri result = data.getData();
-                returnIntent.putExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI, result);
+                if (result != null) {
+                    returnIntent.putExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI, result);
+                }
             }
         }
         if (returnIntent == null) {
